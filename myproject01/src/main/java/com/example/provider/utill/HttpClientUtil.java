@@ -12,7 +12,9 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.apache.commons.io.FileUtils;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
@@ -133,7 +135,8 @@ public class HttpClientUtil {
 		return resultString;
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+		FileUtils.copyFile(new File("E:\\BaiduNetdiskDownload\\滨田英明.xmp"),new File("F:\\nihao"));
 		String s = HttpClientUtil.doGet("http://localhost:8080/hello");
 		System.out.println(s);
 	}
