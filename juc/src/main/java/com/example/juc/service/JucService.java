@@ -1,12 +1,19 @@
 package com.example.juc.service;
 
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
+import com.example.juc.util.SafeCollections;
+
+
+import java.util.Map;
+import java.util.concurrent.FutureTask;
+
 
 public class JucService {
 
+    public static void main(String[] args) {
+        Map<String, String> map = SafeCollections.concurrentHashMap();
+        map.put("a","b");
+        System.out.println(map);
+    }
+
 
 }
-
-
