@@ -2,6 +2,7 @@ package com.example.juc.service.queue;
 
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.TimeUnit;
 
 public class QueueDemo {
@@ -10,9 +11,41 @@ public class QueueDemo {
     //读取，如果队列空了，也必须阻塞等待
     public static void main(String[] args) throws InterruptedException {
         QueueDemo queueDemo = new QueueDemo();
-        queueDemo.test04();
+        queueDemo.test05();
+    }
+    /**
+     * 同步队列
+     */
+    public void test05(){
+        SynchronousQueue<String> queue = new SynchronousQueue<>();
+        new Thread(()->{
+            try {
+                System.out.println(Thread.currentThread().getName()+" put a");
+                queue.put("a");
+                System.out.println(Thread.currentThread().getName()+" put b");
+                queue.put("b");
+                System.out.println(Thread.currentThread().getName()+" put c");
+                queue.put("c");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+
+        new Thread(()->{
+            try {
+                System.out.println(Thread.currentThread().getName()+queue.take());
+                System.out.println(Thread.currentThread().getName()+queue.take());
+                System.out.println(Thread.currentThread().getName()+queue.take());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+
     }
 
+    /**
+     * 阻塞队列
+     */
     //抛出异常
     public void test01() {
         //队列的大小
