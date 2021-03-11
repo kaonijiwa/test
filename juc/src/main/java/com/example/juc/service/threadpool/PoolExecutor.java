@@ -3,7 +3,7 @@ package com.example.juc.service.threadpool;
 import java.util.concurrent.*;
 
 public class PoolExecutor {
-    public static void main(String[] args) {\
+    public static void main(String[] args) {
         //最大线程该如何定义
 //cpu 密集型 几核cpu就是几个 可以保证CPU的效率最高
 //IO  密集型 判断程序中十分耗IO的线程
