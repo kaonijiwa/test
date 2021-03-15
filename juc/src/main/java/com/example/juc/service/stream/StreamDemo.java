@@ -30,6 +30,6 @@ public class StreamDemo {
                 .limit(1)
                 .forEach(user -> System.out.println(user));
 
-
+        list.stream().sorted(Comparator.comparing(User::getId,Compartor.nullsLast(Long::compareTo)).reversed()).skip(1).limit(5).collect(Collectors.toList());
     }
 }
