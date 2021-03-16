@@ -1,7 +1,9 @@
 package com.example.juc.service.stream;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 1.id必须是偶数
@@ -30,6 +32,6 @@ public class StreamDemo {
                 .limit(1)
                 .forEach(user -> System.out.println(user));
 
-        list.stream().sorted(Comparator.comparing(User::getId,Compartor.nullsLast(Long::compareTo)).reversed()).skip(1).limit(5).collect(Collectors.toList());
+        list.stream().sorted(Comparator.comparing(User::getId, Comparator.nullsLast(Integer::compareTo)).reversed()).skip(1).limit(5).collect(Collectors.toList());
     }
 }
