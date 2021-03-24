@@ -21,6 +21,15 @@ public class SingleLinkedList {
         System.out.println(demo.head);
         demo.delete(node01);
         System.out.println(demo.head);
+        //求单链表的有效节点的个数
+        System.out.println(demo.getLength(demo.head));
+        //测试获取倒数第k个节点
+        HeroNode lastIndexNode = demo.findLastIndexNode(demo.head, 2);
+        System.out.println(lastIndexNode);
+        //将单链表反转
+        demo.reverse(demo.head);
+        System.out.println(demo.head);
+
     }
 }
 
@@ -148,6 +157,58 @@ class LinkedListDemo {
         }
     }
 
+    //获取单链表的节点的个数，如果带头节点，则不需要统计头节点
+    public int getLength(HeroNode node) {
+        //空链表
+        if (head.next == null) {
+            return 0;
+        }
+        int length = 0;
+        HeroNode cur = head.next;
+        while (cur != null) {
+            length++;
+            cur = cur.next;
+        }
+        return length;
+    }
+
+    //查找单链表中的倒数第k个节点
+    public HeroNode findLastIndexNode(HeroNode node, int index) {
+        if (head.next == null) {
+            return null;
+        }
+        //获取链表长度
+        int length = getLength(node);
+        //校验
+        if (index > length || index <= 0) {
+            return null;
+        }
+        HeroNode cur = head.next;
+        for (int i = 0; i < length - index; i++) {
+            cur = cur.next;
+        }
+        return cur;
+    }
+
+    //翻转单链表
+    public void reverse(HeroNode node) {
+        //链表为空或者只有一个节点
+        if (node.next == null || head.next.next == null) {
+            return;
+        }
+        HeroNode cur = head.next;
+        HeroNode temp = null;
+        HeroNode reverseHead = new HeroNode(0, "", "");
+        while (cur != null) {
+            temp = cur.next;//先暂时保存当前节点的下一个节点
+            cur.next = reverseHead.next;//将cur节点的下一个节点指向新链表的最前端
+            reverseHead.next = cur;//将cur连接到新的链表上
+            cur = temp;
+        }
+        head.next = reverseHead.next;
+
+    }
+
 }
 
 //定义节点
@@ -163,6 +224,16 @@ class HeroNode {
         this.name = name;
         this.nickName = nickName;
     }
+
+//    @Override
+//    public String toString() {
+//        return "HeroNode{" +
+//                "no=" + no +
+//                ", name='" + name + '\'' +
+//                ", nickName='" + nickName +
+//                '}';
+//    }
+
 
     @Override
     public String toString() {
