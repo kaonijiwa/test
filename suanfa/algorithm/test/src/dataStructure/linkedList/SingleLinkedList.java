@@ -1,5 +1,7 @@
 package dataStructure.linkedList;
 
+import java.util.Stack;
+
 public class SingleLinkedList {
     public static void main(String[] args) {
         HeroNode node01 = new HeroNode(4, "宋江", "及时雨");
@@ -15,20 +17,23 @@ public class SingleLinkedList {
         demo.addByOrder(node03);
         demo.addByOrder(node04);
         demo.addByOrder(node05);
-        System.out.println(demo.head);
-        demo.update(node06);
-        demo.update(node07);
-        System.out.println(demo.head);
-        demo.delete(node01);
-        System.out.println(demo.head);
-        //求单链表的有效节点的个数
-        System.out.println(demo.getLength(demo.head));
-        //测试获取倒数第k个节点
-        HeroNode lastIndexNode = demo.findLastIndexNode(demo.head, 2);
-        System.out.println(lastIndexNode);
-        //将单链表反转
-        demo.reverse(demo.head);
-        System.out.println(demo.head);
+//        System.out.println(demo.head);
+//        demo.update(node06);
+//        demo.update(node07);
+//        System.out.println(demo.head);
+//        demo.delete(node01);
+//        System.out.println(demo.head);
+//        //求单链表的有效节点的个数
+//        System.out.println(demo.getLength(demo.head));
+//        //测试获取倒数第k个节点
+//        HeroNode lastIndexNode = demo.findLastIndexNode(demo.head, 2);
+//        System.out.println(lastIndexNode);
+//        //将单链表反转
+//        demo.reverse(demo.head);
+//        System.out.println(demo.head);
+        //倒序打印单链表
+        System.out.println("倒序打印单链表");
+        demo.reversePrint(demo.head);
 
     }
 }
@@ -208,6 +213,27 @@ class LinkedListDemo {
         head.next = reverseHead.next;
 
     }
+
+    //使用栈实现逆序打印
+    public void reversePrint(HeroNode node) {
+        //空链表
+        if (head.next == null) {
+            return;
+        }
+        //创建一个栈，将各个节点压入栈
+        Stack<HeroNode> stack = new Stack<>();
+        HeroNode cur = head.next;
+        while (cur != null) {
+            stack.add(cur);
+            cur = cur.next;
+        }
+        while (stack.size() > 0) {
+            System.out.println(stack.pop());
+        }
+    }
+
+    //合并两个单链表，合并之后的链表依然有序
+
 
 }
 
